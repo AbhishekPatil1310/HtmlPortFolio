@@ -19,12 +19,10 @@ nav {
     left: 0;
     width: 100%;
     z-index: 1000;
-
     display: flex;
     justify-content: space-around;
     align-items: center;
     height: 55px;
-
     background-color: rgba(165, 102, 224, 0.4);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -98,16 +96,17 @@ nav ul li a:hover {
 .leftSection {
     font-size: 3rem;
 }
+
 .resumeSection {
-    margin-top: 20px; /* spacing below the span */
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
 .resume-btn {
-    padding: 6px 14px; /* smaller size */
-    font-size: 0.85rem; /* smaller text */
+    padding: 6px 14px;
+    font-size: 0.85rem;
     background: linear-gradient(90deg, #7d00ff, #b300ff);
     color: white;
     border-radius: 6px;
@@ -121,7 +120,6 @@ nav ul li a:hover {
     transform: scale(1.05);
     box-shadow: 0 4px 10px rgba(179, 0, 255, 0.6);
 }
-
 
 .rightSection img {
     width: 80%;
@@ -227,7 +225,6 @@ nav ul li a:hover {
         opacity: 0;
         transform: translateY(20px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
@@ -261,7 +258,7 @@ nav ul li a:hover {
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     padding: 20px;
-    flex: 1 1 calc(50% - 30px); /* two cards per row */
+    flex: 1 1 calc(50% - 30px);
     max-width: 450px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-sizing: border-box;
@@ -299,23 +296,6 @@ nav ul li a:hover {
     background: rgb(121, 55, 192);
 }
 
-/* Responsive for smaller screens */
-@media (max-width: 768px) {
-    .project-card {
-        flex: 1 1 100%;
-    }
-
-    .section-title {
-        font-size: 2rem;
-    }
-
-    .about-box {
-        font-size: 1rem;
-    }
-}
-
-/* Contact Section */
-/* Contact Section */
 /* Contact Section */
 .contact-section {
   background: linear-gradient(135deg, #0f0f1a, #1a0033);
@@ -409,8 +389,6 @@ nav ul li a:hover {
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
-
-
 main hr {
     border: 0;
     background: rgb(121, 59, 179);
@@ -418,3 +396,89 @@ main hr {
     margin: 40px 84px;
 }
 
+/* ========================= */
+/* RESPONSIVE DESIGN */
+/* ========================= */
+
+/* Tablets */
+@media (max-width: 1024px) {
+    .first > div {
+        width: 45%;
+    }
+    .leftSection {
+        font-size: 2.5rem;
+    }
+    nav ul li a {
+        font-size: 1rem;
+    }
+}
+
+/* Mobile Large */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        height: auto;
+        padding: 10px 0;
+    }
+    nav ul {
+        flex-wrap: wrap;
+        margin-top: 8px;
+    }
+    .first {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 10px;
+    }
+    .first > div {
+        width: 90%;
+    }
+    .leftSection {
+        font-size: 2rem;
+    }
+    .resumeSection {
+        align-items: center;
+    }
+    .rightSection img {
+        width: 100%;
+        margin-top: 20px;
+    }
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+/* Mobile Small */
+@media (max-width: 480px) {
+    .leftSection {
+        font-size: 1.5rem;
+    }
+    nav ul li {
+        margin: 0 10px;
+    }
+    nav ul li a {
+        font-size: 0.9rem;
+    }
+    .projectsSection h1 {
+        font-size: 1.8rem;
+    }
+    .project-card {
+        padding: 15px;
+    }
+    .about-box {
+        font-size: 0.95rem;
+    }
+    .skills-container {
+        gap: 20px;
+    }
+}
+
+/* Extra Small Devices */
+@media (max-width: 360px) {
+    .leftSection {
+        font-size: 1.3rem;
+    }
+    .resume-btn {
+        font-size: 0.75rem;
+        padding: 5px 10px;
+    }
+}
