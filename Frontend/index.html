@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Abhishek Patil</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet" />
+
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="left">Abhishek Portfolio</div>
+            <div class="right">
+                <ul>
+                    <li><a href="#home">Profile</a></li>
+                    <li><a href="#About">About</a></li>
+                    <li><a href="#project">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="first">
+            <div class="leftSection">
+                Hi, my Name is <span class="Purple">Abhishek</span>
+                <div>Patil I am a Web Developer</div>
+                <span id="element"></span>
+
+                <!-- Resume Button placed below with spacing -->
+                <div class="resumeSection">
+                    <a href="AbhishekPatil(resume_).pdf" download class="resume-btn">Download Resume</a>
+                </div>
+            </div>
+
+            <div class="rightSection">
+                <img src='Dp.png' alt="Abhishek Patil Portrait" />
+            </div>
+        </section>
+
+
+
+        <hr />
+
+        <section id="About" class="secondSection">
+            <h2 class="section-title">About Me & Skills</h2>
+
+            <div class="about-box glass">
+                <p>I am a Computer Science graduate from <strong>M S Ramaiah University of Applied Sciences</strong>.
+                    I’m passionate about building interactive and responsive websites using the <strong>MERN
+                        stack</strong> (MongoDB, Express, React, Node.js).
+                </p>
+                <p>I also have good knowledge of <strong>Python (Flask)</strong> and <strong>MySQL</strong> for backend
+                    and database development.
+                </p>
+                <p class="quote">"Always eager to learn, adapt, and build something impactful."</p>
+            </div>
+
+            <div class="skills-container">
+                <div class="skill glass">
+                    <img src="React.png" alt="React" />
+                    <p>React</p>
+                </div>
+                <div class="skill glass">
+                    <img src="MongoDB.png" alt="MongoDb" />
+                    <p>MongoDb</p>
+                </div>
+                <div class="skill glass">
+                    <img src="ExpressJs.png" alt="Express Js" />
+                    <p>Express js</p>
+                </div>
+                <div class="skill glass">
+                    <img src="NodeJs.png" alt="NodeJs" />
+                    <p>Node Js</p>
+                </div>
+                <div class="skill glass">
+                    <img src="Python.png" alt="Flask" />
+                    <p>Python (Flask)</p>
+                </div>
+                <div class="skill glass">
+                    <img src="Mysql.png" alt="Mysql" />
+                    <p>Mysql</p>
+                </div>
+                <div class="skill glass">
+                    <img src="GitHub.png" alt="Git/GitHub" />
+                    <p>Git/GitHub</p>
+                </div>
+                <div class="skill glass">
+                    <img src="supabase.png" alt="Supabase" />
+                    <p>Supabase Cloud</p>
+                </div>
+            </div>
+        </section>
+
+        <hr />
+
+        <section id="project" class="thirdSection">
+            <h1>Projects</h1>
+            <div class="projects-container">
+                <div class="project-card">
+                    <h3>Portfolio Website</h3>
+                    <p>A personal portfolio website built using React and Tailwindcss to showcase my skills and
+                        projects.</p>
+                    <a href="https://portfolio-rho-brown-59.vercel.app/" target="_blank" class="btn">View Project</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>AdVestor</h3>
+                    <p>A MERN stack project where users can watch ads and earn credits. Advertisers can upload images
+                        and descriptions as advertisements. Integrated with Supabase for cloud storage and Fastify as
+                        the backend framework. Includes image moderation to prevent harmful content from being uploaded.
+                    </p>
+                    <a href="https://vercel-frontend-eta-plum.vercel.app/" target="_blank" class="btn">View Project</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Herbarium: the virtual garden</h3>
+                    <p>A virtual garden app to explore and learn about various plants. Users view plant details, and
+                        share experiences.</p>
+                    <a href="https://herbal-garden-git-main-abhishek-kumars-projects-7905b109.vercel.app/home"
+                        target="_blank" class="btn">View Project</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Real time workout tracking system</h3>
+                    <p>A real-time workout tracking system that allows users to log workouts, track progress, and show
+                        the calory burn.</p>
+                    <a href="https://github.com/AbhishekPatil1310/A4" target="_blank" class="btn">View Project</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Event ticket booking system</h3>
+                    <p>A web application for booking tickets for various events. Users can view events, book tickets,
+                        and
+                        manage bookings.</p>
+                    <a href="https://event-ticket-booking-o0cxa2ohs-abhisheks-projects-680a2fd9.vercel.app/"
+                        target="_blank" class="btn">View Project</a>
+                </div>
+            </div>
+        </section>
+
+        <hr />
+
+        <section id="contact" class="contact-section">
+            <div class="contact-box">
+                <h2>Contact Me</h2>
+
+                <form id="contactForm">
+                    <input type="text" name="name" placeholder="Your Name" required />
+                    <input type="email" name="email" placeholder="Your Email" required />
+                    <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+                    <button type="submit">Send Message</button>
+                    <p id="formStatus"></p>
+                </form>
+
+                <div class="social-links">
+                    <a href="https://linkedin.com/in/abhishek-patil-a0a82431a" target="_blank"
+                        class="linkedin">LinkedIn</a>
+                    <a href="https://github.com/AbhishekPatil1310" target="_blank" class="github">GitHub</a>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <!-- Typed.js Library -->
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <!-- Link to external JS -->
+    <script src="script.js"></script>
+</body>
+
+</html>
