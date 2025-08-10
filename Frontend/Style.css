@@ -62,7 +62,7 @@ nav ul li a:hover {
 .first {
     position: relative;
     min-height: calc(100vh - 55px);
-    background-image: url('background (2).jpg');
+    background-image: url('backgrounds.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -482,3 +482,4 @@ main hr {
         padding: 5px 10px;
     }
 }
+
