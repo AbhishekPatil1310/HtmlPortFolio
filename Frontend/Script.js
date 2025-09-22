@@ -66,13 +66,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const visitorModal = document.getElementById("visitorModal");
   const visitorForm = document.getElementById("visitorForm");
   const visitorStatus = document.getElementById("visitorStatus");
+  const closeVisitorModal = document.getElementById("closeVisitorModal");
+
+  let popupClosed = false; // Track if popup was closed
 
   if (visitorModal && visitorForm) {
     // Show popup when About section enters view
     const aboutSection = document.getElementById("About");
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !popupClosed) {
           visitorModal.style.display = "flex"; // Show modal
           observer.disconnect(); // Only trigger once
         }
@@ -121,5 +124,13 @@ document.addEventListener("DOMContentLoaded", () => {
         visitorStatus.style.color = "red";
       }
     });
+
+    // Close button handler
+    if (closeVisitorModal) {
+      closeVisitorModal.addEventListener("click", () => {
+        visitorModal.style.display = "none";
+        popupClosed = true; // Prevent reopening until page refresh
+      });
+    }
   }
 });
