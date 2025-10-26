@@ -10,8 +10,16 @@ body {
     background-color: black;
     color: white;
     font-family: 'Poppins', sans-serif;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
 }
-
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+html {
+  scrollbar-width: none;
+}
 /* Fixed Transparent Glass Navbar */
 nav {
     position: fixed;
@@ -585,5 +593,6 @@ main hr {
     padding: 12px 5px;
   }
 }
+
 
 
