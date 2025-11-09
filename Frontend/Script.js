@@ -2,7 +2,7 @@
 // Configuration
 // ===================================
 // Define the API base URL once for easier maintenance
-const API_BASE_URL = "https://backend-w9js.onrender.com";
+const API_BASE_URL = "https://portbackendsimple.netlify.app";
 
 
 // =============================
@@ -170,3 +170,4 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 });
+
