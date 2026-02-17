@@ -19,3 +19,11 @@ export const contactSchema = z.object({
   company: z.string().trim().max(120).optional().default(""),
 });
 
+export const visitSchema = z.object({
+  path: z.string().trim().min(1).max(512),
+  referrer: z.string().trim().max(1024).optional().default(""),
+  timezone: z.string().trim().max(120).optional().default(""),
+  locale: z.string().trim().max(35).optional().default(""),
+  screen: z.string().trim().max(64).optional().default(""),
+  visitorId: z.string().trim().max(64).optional().default(""),
+});

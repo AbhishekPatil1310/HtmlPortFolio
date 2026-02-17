@@ -41,5 +41,13 @@ export const config = {
   brevoSubjectPrefix: process.env.BREVO_SUBJECT_PREFIX ?? "[Portfolio Contact]",
   brevoTimeoutMs: parseNumber(process.env.BREVO_TIMEOUT_MS, 8_000),
   brevoRetryCount: parseNumber(process.env.BREVO_RETRY_COUNT, 2),
+  visitRateLimitWindowMs: parseNumber(process.env.VISIT_RATE_LIMIT_WINDOW_MS, 60_000),
+  visitRateLimitMax: parseNumber(process.env.VISIT_RATE_LIMIT_MAX, 60),
+  visitDedupWindowMs: parseNumber(process.env.VISIT_DEDUP_WINDOW_MS, 6 * 60 * 60 * 1000),
+  telegramEnabled: process.env.TELEGRAM_ENABLED === "true",
+  telegramBotToken: process.env.TELEGRAM_BOT_TOKEN ?? "",
+  telegramChatId: process.env.TELEGRAM_CHAT_ID ?? "",
+  telegramApiBaseUrl: process.env.TELEGRAM_API_BASE_URL ?? "https://api.telegram.org",
+  telegramTimeoutMs: parseNumber(process.env.TELEGRAM_TIMEOUT_MS, 6_000),
+  telegramRetryCount: parseNumber(process.env.TELEGRAM_RETRY_COUNT, 2),
 };
-

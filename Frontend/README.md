@@ -96,11 +96,16 @@ Create a `.env` file in `pixel-perfect-portfolio` if needed.
   Optional direct contact endpoint override.  
   Default in code: `/api/contact`
 
+- `VITE_VISIT_TRACK_ENDPOINT`  
+  Optional visitor tracking endpoint override.  
+  Default in code: `/api/visits`
+
 Example:
 
 ```env
 VITE_API_PROXY_TARGET=http://localhost:4000
 VITE_BREVO_FORM_ENDPOINT=/api/contact
+VITE_VISIT_TRACK_ENDPOINT=/api/visits
 ```
 
 ## Available Scripts
