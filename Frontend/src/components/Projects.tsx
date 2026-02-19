@@ -22,11 +22,16 @@ const projects: Project[] = [
     description: "Transforms raw SQL/DDL scripts into interactive Entity-Relationship Diagrams, streamlining database design reviews.",
     image: sql_visualizer,
     highlights: [
-      "DDL to ERD transformation with auto-parsed metadata",
-      "React Flow for dynamic drag-and-drop table visualizations",
-      "Node.js + TypeScript backend for SQL parsing",
+        "Engineered a multi-tenant SQL workspace with secure database connectivity, supporting real-time query execution for PostgreSQL and MySQL.",
+        "Developed a scalable backend architecture using Express and TypeScript, featuring JWT authentication and AES-256 encrypted connection handling.",
+        "Architected modular APIs to facilitate seamless workspace switching, schema exploration, and asynchronous query operations.",
+        "Designed a responsive React + TypeScript frontend featuring an interactive schema explorer, integrated SQL editor, and dynamic result visualizations.",
+        "Integrated a lightning-fast AI SQL Assistant powered by Llama-3.1-8B-Instant on Groq, achieving sub-second natural-language-to-SQL conversion.",
+        "Implemented a security layer for the AI assistant to detect 'dangerous' operations (DROP, DELETE) and validate query performance before execution.",
+        "Built backend AI endpoints for schema-aware context building and query explanation, leveraging the Llama-3.1 128K context window for complex schemas.",
+        "Optimized production readiness by implementing query caching, rate limiting, and a live AI metrics dashboard to monitor inference latency."
     ],
-    tech: ["React", "React Flow", "Node.js", "TypeScript"],
+    tech: ["React","React Flow","Node.js","TypeScript","Express","PostgreSQL","MySQL","Groq","Llama 3.1","JWT","Tailwind CSS"],
     link: "https://sql-schema-visualizer-frontend-28ta.vercel.app/",
   },
   {
