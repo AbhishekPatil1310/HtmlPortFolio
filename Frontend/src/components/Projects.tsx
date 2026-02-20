@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, LucideIcon, LayoutDashboard } from "lucide-react";
 import sql_visualizer from '../../assets/SQL_schema_visulizer.gif';
@@ -98,6 +99,15 @@ const projects: Project[] = [
 ];
 
 const Projects = () => {
+  const [expandedProjects, setExpandedProjects] = useState<Record<string, boolean>>({});
+
+  const toggleHighlights = (projectTitle: string) => {
+    setExpandedProjects((prev) => ({
+      ...prev,
+      [projectTitle]: !prev[projectTitle],
+    }));
+  };
+
   return (
     <section id="projects" className="section-padding py-12">
       <div className="section-container">
@@ -117,73 +127,93 @@ const Projects = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-          {projects.map((project, i) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              whileHover={{ y: -5 }}
-              className="glass-card group cursor-pointer p-4 rounded-2xl border border-white/10"
-              onClick={() => window.open(project.link, "_blank")}
-            >
-              {/* Image Container: Height reduced to h-36 from h-48 */}
-              <div className="w-full h-36 rounded-xl bg-secondary/60 mb-3 flex items-center justify-center overflow-hidden">
-                {project.image ? (
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                ) : (
-                  project.icon && <project.icon size={40} className="text-primary/30" />
-                )}
-              </div>
+          {projects.map((project, i) => {
+            const isExpanded = !!expandedProjects[project.title];
+            const visibleHighlights = isExpanded
+              ? project.highlights
+              : project.highlights.slice(0, 3);
 
-              <div className="flex items-start justify-between mb-1.5">
-                <h3 className="text-base font-semibold text-foreground line-clamp-1">
-                  {project.title}
-                </h3>
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:scale-110 transition-transform"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <ExternalLink size={16} className="text-muted-foreground group-hover:text-primary shrink-0" />
-                </a>
-              </div>
+            return (
+              <motion.div
+                key={project.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                whileHover={{ y: -5 }}
+                className="glass-card group cursor-pointer p-4 rounded-2xl border border-white/10"
+                onClick={() => window.open(project.link, "_blank")}
+              >
+                {/* Image Container: Height reduced to h-36 from h-48 */}
+                <div className="w-full h-36 rounded-xl bg-secondary/60 mb-3 flex items-center justify-center overflow-hidden">
+                  {project.image ? (
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  ) : (
+                    project.icon && <project.icon size={40} className="text-primary/30" />
+                  )}
+                </div>
 
-              {/* Description: Clamped to 2 lines to save space */}
-              <p className="text-xs text-muted-foreground mb-3 leading-relaxed line-clamp-2">
-                {project.description}
-              </p>
-
-              {/* Highlights: Reduced spacing and font size */}
-              <ul className="space-y-1 mb-4">
-                {project.highlights.slice(0, 3).map((h, idx) => (
-                  <li key={idx} className="text-[11px] text-muted-foreground flex gap-2 line-clamp-1">
-                    <span className="text-primary font-bold">›</span>
-                    {h}
-                  </li>
-                ))}
-              </ul>
-
-              {/* Tech Tags: Smaller padding and text */}
-              <div className="flex flex-wrap gap-1.5">
-                {project.tech.map((t) => (
-                  <span
-                    key={t}
-                    className="px-2 py-0.5 text-[10px] rounded-md bg-primary/10 text-primary border border-primary/20"
+                <div className="flex items-start justify-between mb-1.5">
+                  <h3 className="text-base font-semibold text-foreground line-clamp-1">
+                    {project.title}
+                  </h3>
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:scale-110 transition-transform"
+                    onClick={(e) => e.stopPropagation()}
                   >
-                    {t}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+                    <ExternalLink size={16} className="text-muted-foreground group-hover:text-primary shrink-0" />
+                  </a>
+                </div>
+
+                {/* Description: Clamped to 2 lines to save space */}
+                <p className="text-xs text-muted-foreground mb-3 leading-relaxed line-clamp-2">
+                  {project.description}
+                </p>
+
+                {/* Highlights: Reduced spacing and font size */}
+                <ul className="space-y-1 mb-2">
+                  {visibleHighlights.map((h, idx) => (
+                    <li key={idx} className="text-[11px] text-muted-foreground flex gap-2">
+                      <span className="text-primary font-bold">›</span>
+                      {h}
+                    </li>
+                  ))}
+                </ul>
+
+                {project.highlights.length > 3 && (
+                  <button
+                    type="button"
+                    className="text-[11px] text-primary mb-4 hover:underline"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleHighlights(project.title);
+                    }}
+                  >
+                    {isExpanded ? "View less" : "View more"}
+                  </button>
+                )}
+
+                {/* Tech Tags: Smaller padding and text */}
+                <div className="flex flex-wrap gap-1.5">
+                  {project.tech.map((t) => (
+                    <span
+                      key={t}
+                      className="px-2 py-0.5 text-[10px] rounded-md bg-primary/10 text-primary border border-primary/20"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
