@@ -81,7 +81,7 @@ const projects: Project[] = [
       "Prisma ORM with PostgreSQL (Supabase).",
     ],
     tech: ["TypeScript", "React", "Node.js", "Express", "PostgreSQL", "Socket.io"],
-    link: "https://eclectic-brioche-a66956.netlify.app/",
+    link: "https://task-management-frontend-uhsr.vercel.app/login",
   },
   {
     title: "Secure Document Management",
