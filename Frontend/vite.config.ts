@@ -26,5 +26,19 @@ export default defineConfig(({ mode }) => {
         "@": path.resolve(__dirname, "./src"),
       },
     },
+    build: {
+      target: "es2019",
+      minify: "esbuild",
+      cssCodeSplit: true,
+      reportCompressedSize: false,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            "react-vendor": ["react", "react-dom", "react-router-dom"],
+            "motion-icons": ["framer-motion", "lucide-react"],
+          },
+        },
+      },
+    },
   };
 });
