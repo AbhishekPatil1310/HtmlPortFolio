@@ -20,11 +20,18 @@ const experiences: ExperienceItem[] = [
     period: "Dec 2025 – Jan 2026",
     link: "https://www.shardaacademy.co.in/", // ADD YOUR LINK HERE
     points: [
-      "Architected full-stack system serving 5 user roles (Admin, Receptionist, Student, DTP Operator, Clerk) with 20+ modules and PostgreSQL (15+ tables)",
-      "Built secure JWT + httpOnly cookie auth with role-based middleware and forced password change",
-      "Developed complex installment calculations (1–4 months with surcharge), payment tracking with audit trails, automated student codes",
-      "Implemented real-time QR attendance with crypto tokens, 5-min expiry, and replay attack prevention",
-      "Created 8+ API endpoint groups with pagination, search, Zod validation, and financial reporting",
+      "Developed a full-stack Admission Management System for educational institutions using React (frontend) and Node.js/Express (backend) with PostgreSQL database.",
+      "Implemented multi-role user management (Admin, Receptionist, Student, Director, DTP Operator) with secure JWT-based authentication and robust role-based access control (RBAC).",
+      "Built modules for student self-registration, batch assignment, and unique student ID generation.",
+      "Designed and managed flexible fee structures, including installment plans, surcharges, concessions, and real-time payment tracking with receipt generation.",
+      "Integrated QR code-based attendance marking and analytics, enabling real-time attendance status and comprehensive reporting for admins and students.",
+      "Developed academic management features: batch creation, subject assignment, exam scheduling, mark entry, and student result viewing.",
+      "Created dashboards and reporting tools for financial summaries, outstanding fees, attendance analytics, and batch-wise student performance, with Excel export support.",
+      "Enforced security best practices: httpOnly JWT cookies, password change on first login, account activation/deactivation, and session management.",
+      "Utilized modern frontend stack: React 19, Vite, React Router, Axios, Tailwind CSS, and Lucide React for UI/UX.",
+      "Automated CI/CD pipelines with GitHub integration; deployed frontend on Vercel and backend on Azure.",
+      "Followed best practices in backend validation (Zod), file export (ExcelJS), and code quality (ESLint).",
+      "Designed normalized (3NF) database schema for users, students, admissions, payments, attendance, and exams."
     ],
     tech: ["Node.js", "Express", "PostgreSQL", "React", "JWT", "Tailwind CSS"],
   },

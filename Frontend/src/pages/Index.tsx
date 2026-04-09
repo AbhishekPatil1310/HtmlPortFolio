@@ -37,8 +37,7 @@ const Index = () => {
     try {
       if (localStorage.getItem(VISITOR_TRACKED_KEY) === "1") return;
     } catch {
-      // Best effort only; continue without persistent dedupe.
-    }
+      }
 
     const payload = {
       path: window.location.pathname,
