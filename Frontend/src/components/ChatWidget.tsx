@@ -22,6 +22,59 @@ function extractAnswer(payload: unknown): string {
   return "I couldn't find a clear answer for that. Try rephrasing your question.";
 }
 
+function renderInline(text: string, keyPrefix: string) {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g).filter(Boolean);
+  return parts.map((part, index) =>
+    part.startsWith("**") && part.endsWith("**") ? (
+      <strong key={`${keyPrefix}-${index}`}>{part.slice(2, -2)}</strong>
+    ) : (
+      <span key={`${keyPrefix}-${index}`}>{part}</span>
+    )
+  );
+}
+
+function normalizeListBreaks(text: string): string {
+  return text
+    .replace(/\s+(\d+[.)])\s+(?=\S)/g, "\n$1 ")
+    .replace(/\s+-\s+(?=\S)/g, "\n- ");
+}
+
+function MessageContent({ text }: { text: string }) {
+  const lines = normalizeListBreaks(text)
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
+
+  return (
+    <div className="space-y-1">
+      {lines.map((line, index) => {
+        const bulletMatch = line.match(/^[-*]\s+(.*)/);
+        const numberedMatch = line.match(/^(\d+)[.)]\s+(.*)/);
+
+        if (bulletMatch) {
+          return (
+            <div key={index} className="flex gap-2 pl-1">
+              <span className="text-muted-foreground">-</span>
+              <span>{renderInline(bulletMatch[1], `${index}`)}</span>
+            </div>
+          );
+        }
+
+        if (numberedMatch) {
+          return (
+            <div key={index} className="flex gap-2 pl-1">
+              <span className="text-muted-foreground">{numberedMatch[1]}.</span>
+              <span>{renderInline(numberedMatch[2], `${index}`)}</span>
+            </div>
+          );
+        }
+
+        return <p key={index}>{renderInline(line, `${index}`)}</p>;
+      })}
+    </div>
+  );
+}
+
 function createId() {
   return typeof crypto !== "undefined" && typeof crypto.randomUUID === "function"
     ? crypto.randomUUID()
@@ -97,7 +150,7 @@ const ChatWidget = () => {
   };
 
   return (
-    <div className="fixed bottom-6 left-6 z-50">
+    <div className="fixed bottom-6 right-6 z-50">
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -137,7 +190,11 @@ const ChatWidget = () => {
                         : "bg-white/70 text-foreground"
                     }`}
                   >
-                    {message.text}
+                    {message.role === "assistant" && !message.isError ? (
+                      <MessageContent text={message.text} />
+                    ) : (
+                      <span className="whitespace-pre-wrap">{message.text}</span>
+                    )}
                   </div>
                 </div>
               ))}
