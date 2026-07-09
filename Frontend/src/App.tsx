@@ -1,5 +1,6 @@
 import { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ChatWidget from "./components/ChatWidget";
 
 const Index = lazy(() => import("./pages/Index"));
 const Services = lazy(() => import("./pages/Services"));
@@ -15,6 +16,7 @@ const App = () => (
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
+    <ChatWidget />
   </BrowserRouter>
 );
 
