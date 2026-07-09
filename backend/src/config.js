@@ -50,4 +50,10 @@ export const config = {
   telegramApiBaseUrl: process.env.TELEGRAM_API_BASE_URL ?? "https://api.telegram.org",
   telegramTimeoutMs: parseNumber(process.env.TELEGRAM_TIMEOUT_MS, 6_000),
   telegramRetryCount: parseNumber(process.env.TELEGRAM_RETRY_COUNT, 2),
+  ragServiceUrl: process.env.RAG_SERVICE_URL ?? "http://127.0.0.1:8000",
+  ragQueryPath: process.env.RAG_QUERY_PATH ?? "/query",
+  ragTimeoutMs: parseNumber(process.env.RAG_TIMEOUT_MS, 20_000),
+  ragRetryCount: parseNumber(process.env.RAG_RETRY_COUNT, 1),
+  chatRateLimitWindowMs: parseNumber(process.env.CHAT_RATE_LIMIT_WINDOW_MS, 60_000),
+  chatRateLimitMax: parseNumber(process.env.CHAT_RATE_LIMIT_MAX, 20),
 };

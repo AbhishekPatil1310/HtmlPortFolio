@@ -5,9 +5,10 @@ import pinoHttp from "pino-http";
 import rateLimit from "express-rate-limit";
 import { createHash } from "node:crypto";
 import { config } from "./config.js";
-import { contactSchema, visitSchema } from "./validation.js";
+import { chatSchema, contactSchema, visitSchema } from "./validation.js";
 import { BrevoProviderError, sendContactEmail } from "./brevo.js";
 import { getRequestId, logger } from "./logger.js";
+import { askRagService, RagServiceError } from "./ragService.js";
 import { sendVisitNotification } from "./telegram.js";
 
 export const app = express();
@@ -69,6 +70,14 @@ const visitLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   message: { ok: false, message: "Too many visit notifications. Please try again shortly." },
+});
+
+const chatLimiter = rateLimit({
+  windowMs: config.chatRateLimitWindowMs,
+  max: config.chatRateLimitMax,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { ok: false, message: "Too many chat requests. Please try again shortly." },
 });
 
 const visitDedup = new Map();
@@ -143,6 +152,27 @@ app.post("/api/contact", contactLimiter, async (req, res, next) => {
   }
 });
 
+app.post("/api/chat", chatLimiter, async (req, res, next) => {
+  try {
+    const parseResult = chatSchema.safeParse(req.body);
+
+    if (!parseResult.success) {
+      res.status(400).json({
+        ok: false,
+        message: "Invalid chat payload",
+        errors: parseResult.error.flatten().fieldErrors,
+      });
+      return;
+    }
+
+    const result = await askRagService(parseResult.data);
+
+    res.status(200).json({ ok: true, ...result });
+  } catch (error) {
+    next(error);
+  }
+});
+
 app.post("/api/visits", visitLimiter, async (req, res, next) => {
   try {
     const parseResult = visitSchema.safeParse(req.body);
@@ -189,6 +219,18 @@ app.use((error, req, res, _next) => {
     res.status(502).json({
       ok: false,
       message: "Email service is temporarily unavailable. Please try WhatsApp or email.",
+    });
+    return;
+  }
+
+  if (error instanceof RagServiceError) {
+    req.log.error(
+      { status: error.status, code: error.code, provider: "rag" },
+      "RAG service request failed"
+    );
+    res.status(502).json({
+      ok: false,
+      message: "Chat assistant is temporarily unavailable. Please try again shortly.",
     });
     return;
   }

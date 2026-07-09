@@ -19,6 +19,17 @@ export const contactSchema = z.object({
   company: z.string().trim().max(120).optional().default(""),
 });
 
+const MAX_QUESTION_LENGTH = 2000;
+
+export const chatSchema = z.object({
+  question: z
+    .string()
+    .trim()
+    .min(1, "Question is too short")
+    .max(MAX_QUESTION_LENGTH, "Question is too long"),
+  topK: z.number().int().positive().max(20).optional(),
+});
+
 export const visitSchema = z.object({
   path: z.string().trim().min(1).max(512),
   referrer: z.string().trim().max(1024).optional().default(""),
